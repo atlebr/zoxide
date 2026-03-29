@@ -42,7 +42,7 @@ https://github.com/ajeetdsouza/zoxide
 )]
 pub enum Cmd {
     Add(Add),
-    Alias(crate::cmd::alias::Alias),
+    Alias(Alias),
     Edit(Edit),
     Import(Import),
     Init(Init),
@@ -64,6 +64,52 @@ pub struct Add {
     /// doesn't
     #[clap(short, long)]
     pub score: Option<f64>,
+}
+
+/// Manage directory aliases
+#[derive(Debug, Parser)]
+#[clap(
+    author,
+    help_template = HelpTemplate,
+)]
+pub struct Alias {
+    #[clap(subcommand)]
+    pub cmd: AliasCommand,
+}
+
+#[derive(Debug, Subcommand)]
+pub enum AliasCommand {
+    /// Add or update an alias
+    Add {
+        /// Alias name
+        name: String,
+        /// Directory path
+        #[clap(value_hint = ValueHint::DirPath)]
+        path: PathBuf,
+        /// Resolve symlinks when storing the path
+        #[clap(long)]
+        resolve: bool,
+    },
+
+    /// Remove an alias
+    Rm {
+        /// Alias name to remove
+        name: String,
+    },
+
+    /// List all aliases
+    List,
+
+    /// Jump to an alias
+    #[clap(hide = true)]
+    Jump {
+        /// Alias name to jump to
+        name: String,
+    },
+
+    /// List alias names for completion
+    #[clap(hide = true)]
+    ListComplete,
 }
 
 /// Edit the database

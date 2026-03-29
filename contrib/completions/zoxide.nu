@@ -14,6 +14,47 @@ module completions {
     --version(-V)             # Print version
   ]
 
+  # Manage directory aliases
+  export extern "zoxide alias" [
+    --help(-h)                # Print help
+    --version(-V)             # Print version
+  ]
+
+  # Add or update an alias
+  export extern "zoxide alias add" [
+    name: string              # Alias name
+    path: path                # Directory path
+    --resolve                 # Resolve symlinks when storing the path
+    --help(-h)                # Print help
+    --version(-V)             # Print version
+  ]
+
+  # Remove an alias
+  export extern "zoxide alias rm" [
+    name: string              # Alias name to remove
+    --help(-h)                # Print help
+    --version(-V)             # Print version
+  ]
+
+  # List all aliases
+  export extern "zoxide alias list" [
+    --help(-h)                # Print help
+    --version(-V)             # Print version
+  ]
+
+  # Jump to an alias
+  export extern "zoxide alias jump" [
+    name: string              # Alias name to jump to
+    --help(-h)                # Print help
+    --version(-V)             # Print version
+  ]
+
+  # List alias names for completion
+  export extern "zoxide alias list-complete" [
+    --help(-h)                # Print help
+    --version(-V)             # Print version
+  ]
+
   # Edit the database
   export extern "zoxide edit" [
     --help(-h)                # Print help

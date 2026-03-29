@@ -1,9 +1,9 @@
 use std::collections::BTreeMap;
 use std::fs;
-use std::io::{self, BufRead, BufReader, Write};
+use std::io::{BufRead, BufReader, Write};
 use std::path::{Path, PathBuf};
 
-use anyhow::{Context, Result, bail, ensure};
+use anyhow::{Context, Result, bail};
 
 /// Manages directory aliases stored in a TSV file.
 pub struct AliasStore {
@@ -89,12 +89,6 @@ impl AliasStore {
         Ok(())
     }
 
-    /// Reloads aliases from disk.
-    pub fn reload(&mut self) -> Result<()> {
-        self.aliases = Self::load_file(&self.path).unwrap_or_default();
-        Ok(())
-    }
-
     /// Adds or updates an alias.
     pub fn add(&mut self, name: &str, path: PathBuf, resolve: bool) -> Result<()> {
         // Validate name
@@ -143,8 +137,4 @@ impl AliasStore {
         self.aliases.keys().cloned().collect()
     }
 
-    /// Checks if an alias exists.
-    pub fn exists(&self, name: &str) -> bool {
-        self.aliases.contains_key(name)
-    }
 }

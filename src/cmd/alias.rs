@@ -1,55 +1,11 @@
 use std::io::{self, Write};
 use std::path::PathBuf;
 
-use anyhow::{Context, Result, bail};
-use clap::{Parser, Subcommand};
+use anyhow::{Result, bail};
 
 use crate::alias::AliasStore;
-use crate::cmd::Run;
+use crate::cmd::{Alias, AliasCommand, Run};
 use crate::config;
-
-/// Manage directory aliases
-#[derive(Debug, Parser)]
-#[clap(author, help_template = crate::cmd::cmd::HelpTemplate, about = "Manage directory aliases")]
-pub struct Alias {
-    #[clap(subcommand)]
-    pub cmd: AliasCommand,
-}
-
-#[derive(Debug, Subcommand)]
-pub enum AliasCommand {
-    /// Add or update an alias
-    Add {
-        /// Alias name
-        name: String,
-        /// Directory path
-        #[clap(value_hint = clap::ValueHint::DirPath)]
-        path: PathBuf,
-        /// Resolve symlinks when storing the path
-        #[clap(long)]
-        resolve: bool,
-    },
-
-    /// Remove an alias
-    Rm {
-        /// Alias name to remove
-        name: String,
-    },
-
-    /// List all aliases
-    List,
-
-    /// Jump to an alias
-    #[clap(hide = true)]
-    Jump {
-        /// Alias name to jump to
-        name: String,
-    },
-
-    /// List alias names for completion
-    #[clap(hide = true)]
-    ListComplete,
-}
 
 impl Run for Alias {
     fn run(&self) -> Result<()> {

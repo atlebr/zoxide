@@ -31,6 +31,113 @@ const completion: Fig.Spec = {
       },
     },
     {
+      name: "alias",
+      description: "Manage directory aliases",
+      subcommands: [
+        {
+          name: "add",
+          description: "Add or update an alias",
+          options: [
+            {
+              name: "--resolve",
+              description: "Resolve symlinks when storing the path",
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Print help",
+            },
+            {
+              name: ["-V", "--version"],
+              description: "Print version",
+            },
+          ],
+          args: [
+            {
+              name: "name",
+            },
+            {
+              name: "path",
+              template: "folders",
+            },
+          ]
+        },
+        {
+          name: "rm",
+          description: "Remove an alias",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help",
+            },
+            {
+              name: ["-V", "--version"],
+              description: "Print version",
+            },
+          ],
+          args: {
+            name: "name",
+          },
+        },
+        {
+          name: "list",
+          description: "List all aliases",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help",
+            },
+            {
+              name: ["-V", "--version"],
+              description: "Print version",
+            },
+          ],
+        },
+        {
+          name: "jump",
+          description: "Jump to an alias",
+          hidden: true,
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help",
+            },
+            {
+              name: ["-V", "--version"],
+              description: "Print version",
+            },
+          ],
+          args: {
+            name: "name",
+          },
+        },
+        {
+          name: "list-complete",
+          description: "List alias names for completion",
+          hidden: true,
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "Print help",
+            },
+            {
+              name: ["-V", "--version"],
+              description: "Print version",
+            },
+          ],
+        },
+      ],
+      options: [
+        {
+          name: ["-h", "--help"],
+          description: "Print help",
+        },
+        {
+          name: ["-V", "--version"],
+          description: "Print version",
+        },
+      ],
+    },
+    {
       name: "edit",
       description: "Edit the database",
       subcommands: [
