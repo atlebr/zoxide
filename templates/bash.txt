@@ -151,6 +151,16 @@ function {{cmd}}i() {
     __zoxide_zi "$@"
 }
 
+function za() {
+    \builtin local -r result="$(\command zoxide alias jump "$@" 2>/dev/null)"
+    if [[ $? -eq 0 ]]; then
+        __zoxide_cd "${result}"
+    else
+        # Fallback to zoxide query
+        __zoxide_z "$@"
+    fi
+}
+
 # Load completions.
 # - Bash 4.4+ is required to use `@Q`.
 # - Completions require line editing. Since Bash supports only two modes of

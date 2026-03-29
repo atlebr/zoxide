@@ -61,6 +61,19 @@ set __zoxide_result = "`zoxide query --exclude '"'"'$__zoxide_pwd'"'"' --interac
 alias {{cmd}} __zoxide_z
 alias {{cmd}}i __zoxide_zi
 
+# Alias for directory aliases
+alias za 'set __zoxide_args = (\!*)\
+if ("$#__zoxide_args" == 0) then\
+    zoxide alias list\
+else\
+    set __zoxide_result = "`zoxide alias jump $__zoxide_args`"\
+    if ($status == 0) then\
+        cd "$__zoxide_result"\
+    else\
+        __zoxide_z $__zoxide_args\
+    endif\
+endif'
+
 {%- when None %}
 
 {{ not_configured }}
