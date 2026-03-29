@@ -83,6 +83,15 @@ With this feature, you can define explicit short names for directories and jump
 to them directly. If an alias is not found, `za` falls back to normal zoxide
 matching and prints a warning to stderr.
 
+Quick alias example:
+
+```sh
+za add proj ~/work/project
+za proj            # jump to alias target
+za list            # list aliases
+za rm proj         # remove alias
+```
+
 ## Installation
 
 zoxide can be installed in 4 easy steps:
