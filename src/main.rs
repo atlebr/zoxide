@@ -1,5 +1,6 @@
 #![allow(clippy::single_component_path_imports)]
 
+mod alias;
 mod cmd;
 mod config;
 mod db;

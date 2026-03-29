@@ -1,4 +1,5 @@
 mod add;
+mod alias;
 mod cmd;
 mod edit;
 mod import;
@@ -18,6 +19,7 @@ impl Run for Cmd {
     fn run(&self) -> Result<()> {
         match self {
             Cmd::Add(cmd) => cmd.run(),
+            Cmd::Alias(cmd) => cmd.run(),
             Cmd::Edit(cmd) => cmd.run(),
             Cmd::Import(cmd) => cmd.run(),
             Cmd::Init(cmd) => cmd.run(),

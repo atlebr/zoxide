@@ -42,6 +42,7 @@ https://github.com/ajeetdsouza/zoxide
 )]
 pub enum Cmd {
     Add(Add),
+    Alias(crate::cmd::alias::Alias),
     Edit(Edit),
     Import(Import),
     Init(Init),
