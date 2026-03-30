@@ -121,6 +121,28 @@ function {{ cmd }}i() {
     __zoxide_zi "$@"
 }
 
+function za() {
+    if [[ "$#" -eq 0 ]]; then
+        \command zoxide alias list
+        return "$?"
+    fi
+
+    case "$1" in
+        add|rm|list|list-complete|jump|-h|--help|-V|--version)
+            \command zoxide alias "$@"
+            return "$?"
+            ;;
+    esac
+
+    \builtin local result
+    result="$(\command zoxide alias jump "$@" 2>/dev/null)"
+    if [[ "$?" -eq 0 ]]; then
+        __zoxide_cd "${result}"
+    else
+        __zoxide_z "$@"
+    fi
+}
+
 {%- when None %}
 
 {{ not_configured }}

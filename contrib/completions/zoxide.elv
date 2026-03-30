@@ -23,6 +23,7 @@ set edit:completion:arg-completer[zoxide] = {|@words|
             cand -V 'Print version'
             cand --version 'Print version'
             cand add 'Add a new directory or increment its rank'
+            cand alias 'Manage directory aliases'
             cand edit 'Edit the database'
             cand import 'Import entries from another application'
             cand init 'Generate shell configuration'
@@ -32,6 +33,48 @@ set edit:completion:arg-completer[zoxide] = {|@words|
         &'zoxide;add'= {
             cand -s 'The rank to increment the entry if it exists or initialize it with if it doesn''t'
             cand --score 'The rank to increment the entry if it exists or initialize it with if it doesn''t'
+            cand -h 'Print help'
+            cand --help 'Print help'
+            cand -V 'Print version'
+            cand --version 'Print version'
+        }
+        &'zoxide;alias'= {
+            cand -h 'Print help'
+            cand --help 'Print help'
+            cand -V 'Print version'
+            cand --version 'Print version'
+            cand add 'Add or update an alias'
+            cand rm 'Remove an alias'
+            cand list 'List all aliases'
+            cand jump 'Jump to an alias'
+            cand list-complete 'List alias names for completion'
+        }
+        &'zoxide;alias;add'= {
+            cand --resolve 'Resolve symlinks when storing the path'
+            cand -h 'Print help'
+            cand --help 'Print help'
+            cand -V 'Print version'
+            cand --version 'Print version'
+        }
+        &'zoxide;alias;rm'= {
+            cand -h 'Print help'
+            cand --help 'Print help'
+            cand -V 'Print version'
+            cand --version 'Print version'
+        }
+        &'zoxide;alias;list'= {
+            cand -h 'Print help'
+            cand --help 'Print help'
+            cand -V 'Print version'
+            cand --version 'Print version'
+        }
+        &'zoxide;alias;jump'= {
+            cand -h 'Print help'
+            cand --help 'Print help'
+            cand -V 'Print version'
+            cand --version 'Print version'
+        }
+        &'zoxide;alias;list-complete'= {
             cand -h 'Print help'
             cand --help 'Print help'
             cand -V 'Print version'

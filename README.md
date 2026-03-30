@@ -76,6 +76,22 @@ z foo<SPACE><TAB>  # show interactive completions (bash 4.4+/fish/zsh only)
 
 Read more about the matching algorithm [here][algorithm-matching].
 
+This branch also includes an additional alias command named `za`, kept separate
+from `z` and `zi` so frecency behavior remains unchanged.
+
+With this feature, you can define explicit short names for directories and jump
+to them directly. If an alias is not found, `za` falls back to normal zoxide
+matching and prints a warning to stderr.
+
+Quick alias example:
+
+```sh
+za add proj ~/work/project
+za proj            # jump to alias target
+za list            # list aliases
+za rm proj         # remove alias
+```
+
 ## Installation
 
 zoxide can be installed in 4 easy steps:
@@ -469,6 +485,25 @@ Environment variables[^2] can be used for configuration. They must be set before
 - `_ZO_RESOLVE_SYMLINKS`
   - When set to 1, `z` will resolve symlinks before adding directories to the
     database.
+
+### Alias command (this branch)
+
+This branch adds a separate alias workflow through `za`:
+
+- `za add <name> <path>`
+  - Adds or updates an alias.
+- `za add --resolve <name> <path>`
+  - Stores the canonicalized path.
+- `za rm <name>`
+  - Removes an alias.
+- `za list`
+  - Lists all aliases.
+- `za <name>`
+  - Jumps to the alias target.
+  - If missing, falls back to regular zoxide matching with a warning.
+
+Aliases are stored in `aliases.tsv` under `_ZO_DATA_DIR`.
+No additional init command is required for bash, zsh, or tcsh in this branch.
 
 ## Third-party integrations
 
